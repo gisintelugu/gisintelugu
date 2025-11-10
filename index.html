@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIS in Telugu - భూసమాచార వ్యవస్థలు నేర్చుకోండి</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Color Scheme - Professional Blues & Greens */
+        :root {
+            --primary-blue: #2c3e50;
+            --secondary-blue: #3498db;
+            --accent-green: #27ae60;
+            --light-bg: #ecf0f1;
+            --text-dark: #2c3e50;
+            --text-light: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            color: var(--text-light);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .logo-telugu {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.8)), url('https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-telugu {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 0.5rem;
+        }
+
+        .cta-button:hover {
+            background-color: #219652;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Sections */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: var(--text-light);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--secondary-blue);
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+        }
+
+        .profile-image {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--secondary-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Playlists Section */
+        .playlists-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .playlist-card {
+            background: var(--light-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .playlist-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .playlist-thumbnail {
+            width: 100%;
+            height: 180px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .playlist-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .playlist-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .playlist-card:hover .playlist-overlay {
+            opacity: 1;
+        }
+
+        .playlist-info {
+            padding: 1.5rem;
+        }
+
+        .playlist-info h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .playlist-logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .playlist-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* YouTube Channel Section */
+        .youtube-channel {
+            text-align: center;
+            background: linear-gradient(135deg, #ff0000, #cc0000);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .youtube-channel h2 {
+            color: white;
+            border-bottom: none;
+        }
+
+        .youtube-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, var(--secondary-blue), var(--primary-blue));
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-radius: 8px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            min-width: 250px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            background-color: var(--accent-green);
+            color: var(--text-light);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-button:hover {
+            background-color: #219652;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Footer Alignment Fix */
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.footer-info {
+    text-align: left;
+    width: 100%;
+}
+
+.disclaimer {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.disclaimer h4 {
+    margin-bottom: 1rem;
+    color: var(--accent-green);
+}
+
+.disclaimer p {
+    margin-bottom: 0.8rem;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    width: 100%;
+}
+
+        .social-links {
+            margin: 1rem 0;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+        }
+
+        .youtube-icon { color: #FF0000; }
+        .whatsapp-icon { color: #25D366; }
+        .facebook-icon { color: #1877F2; }
+        .twitter-icon { color: #1DA1F2; }
+        .email-icon { color: #EA4335; }
+
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            grid-column: 1 / -1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-telugu {
+                font-size: 1.2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-input {
+                min-width: 200px;
+            }
+
+            .youtube-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">🗺️</div>
+                <div>
+                    <div class="logo-text">GIS in Telugu</div>
+                    <div class="logo-telugu" class="nav-bold">జీఐఎస్ ట్యుటోరియల్స్ తెలుగులో</a></div>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home" class="nav-bold">హోమ్</a></li>
+					<li><a href="#about" class="nav-bold">గురించి</a></li>
+					<li><a href="#playlists" class="nav-bold">ప్లేలిస్టులు</a></li>
+					<li><a href="#contact" class="nav-bold">సంప్రదించండి</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Learn GIS in Telugu</h1>
+            <div class="hero-telugu">భూసమాచార వ్యవస్థలు నేర్చుకోండి</div>
+            <p>Comprehensive GIS tutorials, QGIS, ArcGIS, and spatial analysis lessons in Telugu for students, researchers, and professionals.</p>
+            <a href="#playlists" class="cta-button">Start Learning Now</a>
+            <a href="https://www.youtube.com/@GISinTelugu" class="cta-button" target="_blank"><i class="fab fa-youtube"></i> Visit YouTube Channel</a>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="container">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2><i class="fas fa-info-circle"></i> About GIS in Telugu</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Welcome to GIS in Telugu!</strong> We are dedicated to making Geographic Information Systems (GIS) technology accessible to Telugu-speaking communities across the globe.</p>
+                    <p>Our mission is to break the language barrier in technical education by providing high-quality GIS tutorials, courses, and resources entirely in Telugu. We cover a wide range of topics including QGIS, ArcGIS Pro, ArcGIS Online, GeoServer, AutoCAD, and more.</p>
+                    <p>This platform is designed for students, researchers, government employees, and anyone interested in mapping and geospatial technology who prefers learning in their native language.</p>
+                    <div style="margin-top: 1.5rem;">
+                        <a href="#playlists" class="cta-button">Explore Tutorials</a>
+                    </div>
+                </div>
+                <div>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="GIS Visualization" class="profile-image">
+                </div>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Beginner Friendly</h3>
+                    <p>Step-by-step tutorials starting from basic concepts</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🗣️</div>
+                    <h3>Telugu Medium</h3>
+                    <p>All content delivered in clear, understandable Telugu</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛠️</div>
+                    <h3>Practical Skills</h3>
+                    <p>Hands-on exercises with real-world applications</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Career Growth</h3>
+                    <p>Skills that enhance your professional value</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- YouTube Channel Stats -->
+        <section class="youtube-channel">
+            <h2><i class="fab fa-youtube"></i> Our YouTube Channel</h2>
+            <p>Join thousands of learners on our YouTube channel with comprehensive GIS tutorials in Telugu</p>
+            <div class="youtube-stats">
+                <div class="stat">
+                    <div class="stat-number" id="subscriber-count">7000+</div>
+                    <div class="stat-label">Subscribers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="video-count">150+</div>
+                    <div class="stat-label">Videos</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="playlist-count">7+</div>
+                    <div class="stat-label">Playlists</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="view-count">4,25,000+</div>
+                    <div class="stat-label">Total Views</div>
+                </div>
+            </div>
+            <a href="https://www.youtube.com/@GISinTelugu" class="cta-button" target="_blank"><i class="fab fa-youtube"></i> Subscribe Now</a>
+        </section>
+
+        <!-- Playlists Section -->
+        <section id="playlists" class="section">
+            <h2><i class="fas fa-list"></i> Tutorial Playlists</h2>
+            <div class="playlists-grid">
+                <div class="playlist-card">
+                    <div class="playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="ArcGIS Pro">
+                        <div class="playlist-overlay">
+                            <span class="cta-button">View Playlist</span>
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3>
+                            <img src="https://cla.temple.edu/tech-notes/assets/img/arcgis-pro.png" alt="ArcGIS Pro" class="playlist-logo">
+                            ArcGIS Pro Tutorials
+                        </h3>
+                        <p>Complete guide to ArcGIS Pro software with practical examples and projects.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLVmJr58mNRmAKaP9SE2ZvUv6HqE61MSU4" class="cta-button" target="_blank">Watch Now</a>
+                        <div class="playlist-stats">
+                            <span><i class="fas fa-video"></i> 40+ Videos</span>
+                            <span><i class="fas fa-clock"></i> 8+ Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist-card">
+                    <div class="playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="ArcGIS Map">
+                        <div class="playlist-overlay">
+                            <span class="cta-button">View Playlist</span>
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3>
+                            <img src="https://brandeps.com/logo-download/E/Esri-logo-vector-01.svg" alt="ArcGIS" class="playlist-logo">
+                            ArcGIS Map Tutorials
+                        </h3>
+                        <p>Learn to create professional maps and visualizations using ArcGIS.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLVmJr58mNRmCMUGIOMOGZryfGpWmdOYjR" class="cta-button" target="_blank">Watch Now</a>
+                        <div class="playlist-stats">
+                            <span><i class="fas fa-video"></i> 50+ Videos</span>
+                            <span><i class="fas fa-clock"></i> 6+ Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist-card">
+                    <div class="playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="QGIS">
+                        <div class="playlist-overlay">
+                            <span class="cta-button">View Playlist</span>
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3>
+                            <img src="https://www.clipartmax.com/png/middle/178-1789878_latest-news-qgis-logo.png" alt="QGIS" class="playlist-logo">
+                            QGIS Tutorials
+                        </h3>
+                        <p>Master QGIS, the powerful open-source GIS software, from basics to advanced.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLVmJr58mNRmDKLoV_ss9B-RBILAD_iPmY" class="cta-button" target="_blank">Watch Now</a>
+                        <div class="playlist-stats">
+                            <span><i class="fas fa-video"></i> 70+ Videos</span>
+                            <span><i class="fas fa-clock"></i> 5+ Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist-card">
+                    <div class="playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="ArcGIS Online">
+                        <div class="playlist-overlay">
+                            <span class="cta-button">View Playlist</span>
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3>ArcGIS Online</h3>
+                        <p>Create, analyze, and share maps using Esri's cloud-based GIS platform.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLVmJr58mNRmBMBDJtnW2gCKh6yFMZBdS_" class="cta-button" target="_blank">Watch Now</a>
+                        <div class="playlist-stats">
+                            <span><i class="fas fa-video"></i> 2+ Videos</span>
+                            <span><i class="fas fa-clock"></i> 4+ Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist-card">
+                    <div class="playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="GeoServer">
+                        <div class="playlist-overlay">
+                            <span class="cta-button">View Playlist</span>
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3>
+                            <img src="https://geoserver.org/img/geoserver-logo.png" alt="GeoServer" class="playlist-logo">
+                            GeoServer Tutorials
+                        </h3>
+                        <p>Learn to publish geospatial data using open-source GeoServer software.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLVmJr58mNRmAHD17ObTs-VG6KzGjkVOC9" class="cta-button" target="_blank">Watch Now</a>
+                        <div class="playlist-stats">
+                            <span><i class="fas fa-video"></i> 6+ Videos</span>
+                            <span><i class="fas fa-clock"></i> 3+ Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist-card">
+                    <div class="playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="AutoCAD">
+                        <div class="playlist-overlay">
+                            <span class="cta-button">View Playlist</span>
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3>AutoCAD Tutorials</h3>
+                        <p>Master AutoCAD for GIS applications, drafting, and spatial design.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLVmJr58mNRmDeYTAFhCIVfcqt4xd1S0Xq" class="cta-button" target="_blank">Watch Now</a>
+                        <div class="playlist-stats">
+                            <span><i class="fas fa-video"></i> 2+ Videos</span>
+                            <span><i class="fas fa-clock"></i> 2.5+ Hours</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playlist-card">
+                    <div class="playlist-thumbnail">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Google Data Studio">
+                        <div class="playlist-overlay">
+                            <span class="cta-button">View Playlist</span>
+                        </div>
+                    </div>
+                    <div class="playlist-info">
+                        <h3>
+                            <img src="https://images.seeklogo.com/logo-png/61/1/looker-studio-logo-png_seeklogo-617989.png" alt="Looker Studio" class="playlist-logo">
+                            Google Data Studio / Looker Studio
+                        </h3>
+                        <p>Create interactive dashboards and reports with Google's data visualization tool.</p>
+                        <a href="https://www.youtube.com/playlist?list=PLVmJr58mNRmA90wqZG4Fw6A7LLBkMSfWz" class="cta-button" target="_blank">Watch Now</a>
+                        <div class="playlist-stats">
+                            <span><i class="fas fa-video"></i> 3+ Videos</span>
+                            <span><i class="fas fa-clock"></i> 4+ Hours</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="newsletter">
+            <h2><i class="fas fa-envelope"></i> Stay Updated with New Tutorials</h2>
+            <p>Get notified when we release new GIS tutorials in Telugu</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-button">Subscribe to Updates</button>
+            </form>
+        </section>
+    </main>
+
+            <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h3>GIS in Telugu</h3>
+                <p>Empowering Telugu-speaking community with GIS education</p>
+                <div class="social-links">
+                    <a href="https://www.youtube.com/@GISinTelugu" class="youtube-icon" target="_blank" title="YouTube">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://whatsapp.com/channel/0029Vafjw9Y9cDDcRmLpcb0T" class="whatsapp-icon" target="_blank" title="WhatsApp Channel">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="https://www.facebook.com/gisintelugu" class="facebook-icon" target="_blank" title="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.x.com/gisintelugu" class="twitter-icon" target="_blank" title="X (Twitter)">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:gisintelugu@gmail.com" class="email-icon" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+                <div class="disclaimer">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Disclaimer</h4>
+                    <p>Maps and data in this video are sourced from open sources such as divagis.com and are for educational purposes only. Boundaries may not be official or up-to-date; please consult government sources for accuracy.<p>
+					<p>No political significance or endorsement is implied.<p>
+					<p>ArcGIS, ArcGIS Pro, QGIS, AutoCAD, Looker Studio, and GeoServer (and their logos) are trademarks of their respective owners.<p>
+					<p>These video's are independent and not endorsed by any of these organizations.
+					Logos used per brand guidelines for educational content.<p>
+
+
+
+
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 GIS in Telugu. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple smooth scroll for navigation links
+        document.querySelectorAll('nav a, .cta-button[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Newsletter form submission
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('.newsletter-input').value;
+            alert(`Thank you for subscribing with ${email}! We'll notify you about new tutorials.`);
+            this.reset();
+        });
+
+        // Add animation to feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards and playlist cards
+        document.querySelectorAll('.feature-card, .playlist-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+
+        // Dynamic YouTube Stats - Method 1: Manual Update
+        // You can update these values manually whenever needed
+        const youtubeStats = {
+            subscribers: '7000+',
+            videos: '150+',
+            playlists: '7+',
+            views: '4,50,000+'
+        };
+
+        // Update the stats on the page
+        document.getElementById('subscriber-count').textContent = youtubeStats.subscribers;
+        document.getElementById('video-count').textContent = youtubeStats.videos;
+        document.getElementById('playlist-count').textContent = youtubeStats.playlists;
+        document.getElementById('view-count').textContent = youtubeStats.views;
+
+        // Method 2: Using YouTube API (Requires API Key)
+        // Uncomment and replace with your channel ID and API key to use dynamic data
+        /*
+        async function fetchYouTubeStats() {
+            const channelId = 'YOUR_CHANNEL_ID'; // Replace with your channel ID
+            const apiKey = 'YOUR_API_KEY'; // Replace with your YouTube Data API key
+            
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=statistics&id=${channelId}&key=${apiKey}`);
+                const data = await response.json();
+                
+                if (data.items && data.items.length > 0) {
+                    const stats = data.items[0].statistics;
+                    
+                    // Format numbers with commas
+                    const subscriberCount = parseInt(stats.subscriberCount).toLocaleString();
+                    const videoCount = parseInt(stats.videoCount).toLocaleString();
+                    const viewCount = parseInt(stats.viewCount).toLocaleString();
+                    
+                    // Update the DOM
+                    document.getElementById('subscriber-count').textContent = subscriberCount;
+                    document.getElementById('video-count').textContent = videoCount;
+                    document.getElementById('view-count').textContent = viewCount;
+                }
+            } catch (error) {
+                console.error('Error fetching YouTube stats:', error);
+                // Keep the default values if API fails
+            }
+        }
+        
+        // Call the function when the page loads
+        // fetchYouTubeStats();
+        */
+        
+        // Method 3: Using a server-side solution (Recommended for production)
+        // You can create a simple server endpoint that fetches YouTube stats
+        // and caches them to avoid hitting API limits
+        /*
+        async function fetchCachedYouTubeStats() {
+            try {
+                const response = await fetch('/api/youtube-stats'); // Your server endpoint
+                const data = await response.json();
+                
+                document.getElementById('subscriber-count').textContent = data.subscribers;
+                document.getElementById('video-count').textContent = data.videos;
+                document.getElementById('view-count').textContent = data.views;
+            } catch (error) {
+                console.error('Error fetching cached YouTube stats:', error);
+            }
+        }
+        
+        // fetchCachedYouTubeStats();
+        */
+    </script>
+</body>
+</html>
