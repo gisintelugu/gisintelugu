@@ -78,7 +78,7 @@
         nav a {
             color: var(--text-light);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: bold;
             transition: color 0.3s;
         }
 
@@ -355,6 +355,38 @@
             background-color: #219652;
         }
 
+        /* Visitor Counter */
+        .visitor-counter {
+            background: linear-gradient(135deg, var(--accent-green), #219652);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .visitor-counter h2 {
+            color: white;
+            border-bottom: none;
+            margin-bottom: 1rem;
+        }
+
+        .counter-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .counter-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            min-width: 150px;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary-blue);
@@ -364,44 +396,36 @@
         }
 
         /* Footer Alignment Fix */
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
 
-.footer-info {
-    text-align: left;
-    width: 100%;
-}
+        .footer-info {
+            text-align: left;
+            width: 100%;
+        }
 
-.disclaimer {
-    background: rgba(255,255,255,0.1);
-    padding: 1.5rem;
-    border-radius: 5px;
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
+        .disclaimer {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 5px;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
 
-.disclaimer h4 {
-    margin-bottom: 1rem;
-    color: var(--accent-green);
-}
+        .disclaimer h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+        }
 
-.disclaimer p {
-    margin-bottom: 0.8rem;
-}
-
-.copyright {
-    text-align: center;
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.2);
-    width: 100%;
-}
+        .disclaimer p {
+            margin-bottom: 0.8rem;
+        }
 
         .social-links {
             margin: 1rem 0;
@@ -430,9 +454,9 @@
         .copyright {
             text-align: center;
             margin-top: 2rem;
-            padding-top: 1rem;
+            padding-top: 1.5rem;
             border-top: 1px solid rgba(255,255,255,0.2);
-            grid-column: 1 / -1;
+            width: 100%;
         }
 
         /* Responsive Design */
@@ -474,6 +498,11 @@
                 gap: 1rem;
             }
 
+            .counter-container {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
             .footer-container {
                 grid-template-columns: 1fr;
             }
@@ -492,15 +521,15 @@
                 <div class="logo-icon">🗺️</div>
                 <div>
                     <div class="logo-text">GIS in Telugu</div>
-                    <div class="logo-telugu" class="nav-bold">జీఐఎస్ ట్యుటోరియల్స్ తెలుగులో</a></div>
+                    <div class="logo-telugu">జీఐఎస్ ట్యుటోరియల్స్ తెలుగులో</div>
                 </div>
             </div>
             <nav>
                 <ul>
-                    <li><a href="#home" class="nav-bold">హోమ్</a></li>
-					<li><a href="#about" class="nav-bold">గురించి</a></li>
-					<li><a href="#playlists" class="nav-bold">ప్లేలిస్టులు</a></li>
-					<li><a href="#contact" class="nav-bold">సంప్రదించండి</a></li>
+                    <li><a href="#home">హోమ్</a></li>
+                    <li><a href="#about">గురించి</a></li>
+                    <li><a href="#playlists">ప్లేలిస్టులు</a></li>
+                    <li><a href="#contact">సంప్రదించండి</a></li>
                 </ul>
             </nav>
         </div>
@@ -741,9 +770,18 @@
                 <button type="submit" class="newsletter-button">Subscribe to Updates</button>
             </form>
         </section>
+
+        <!-- Visitor Counter -->
+        <section class="visitor-counter">
+            <h2><i class="fas fa-users"></i> Website Visitors</h2>
+            <div class="counter-container">
+                <div class="counter-number" id="visitor-count">12,500+</div>
+                <div class="stat-label">Total Visitors & Growing!</div>
+            </div>
+        </section>
     </main>
 
-            <!-- Footer -->
+    <!-- Footer -->
     <footer id="contact">
         <div class="footer-container">
             <div class="footer-info">
@@ -769,14 +807,10 @@
                 <div class="disclaimer">
                     <h4><i class="fas fa-exclamation-triangle"></i> Disclaimer</h4>
                     <p>Maps and data in this video are sourced from open sources such as divagis.com and are for educational purposes only. Boundaries may not be official or up-to-date; please consult government sources for accuracy.<p>
-					<p>No political significance or endorsement is implied.<p>
-					<p>ArcGIS, ArcGIS Pro, QGIS, AutoCAD, Looker Studio, and GeoServer (and their logos) are trademarks of their respective owners.<p>
-					<p>These video's are independent and not endorsed by any of these organizations.
-					Logos used per brand guidelines for educational content.<p>
-
-
-
-
+                    <p>No political significance or endorsement is implied.<p>
+                    <p>ArcGIS, ArcGIS Pro, QGIS, AutoCAD, Looker Studio, and GeoServer (and their logos) are trademarks of their respective owners.<p>
+                    <p>These video's are independent and not endorsed by any of these organizations.
+                    Logos used per brand guidelines for educational content.<p>
                 </div>
             </div>
             <div class="copyright">
@@ -844,6 +878,37 @@
         document.getElementById('video-count').textContent = youtubeStats.videos;
         document.getElementById('playlist-count').textContent = youtubeStats.playlists;
         document.getElementById('view-count').textContent = youtubeStats.views;
+
+        // Visitor Counter with Animation
+        function animateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16); // 60fps
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target.toLocaleString() + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start).toLocaleString();
+                }
+            }, 16);
+        }
+
+        // Initialize visitor counter
+        const visitorElement = document.getElementById('visitor-count');
+        const initialVisitorCount = 12500; // Starting count
+        
+        // Animate the counter when it comes into view
+        const visitorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(visitorElement, initialVisitorCount, 2000);
+                    visitorObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        visitorObserver.observe(document.querySelector('.visitor-counter'));
 
         // Method 2: Using YouTube API (Requires API Key)
         // Uncomment and replace with your channel ID and API key to use dynamic data
